@@ -19,7 +19,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "gh-pages": "gh-pages -d build"
+    "gh-pages": "gh-pages -d build",
+    "gh-pages-clean": "gh-pages-clean"
   },
   "eslintConfig": {
     "extends": "react-app"

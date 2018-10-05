@@ -9,6 +9,11 @@ body {
   background: linear-gradient(85deg, #ff5edf 0%, #04c8de 100%);
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+}
+
 button {
   cursor: pointer;
 }

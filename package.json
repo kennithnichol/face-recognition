@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://kennithnichol.github.io/face-recognition/",
   "dependencies": {
+    "clarifai": "^2.8.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-particles-js": "^2.3.0",

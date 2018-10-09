@@ -23,7 +23,9 @@ class Register extends Component {
 	}
 
 	onRegistrationSubmit = () => {
-		fetch('https://salty-badlands-62075.herokuapp.com/register', {
+		const { apiUrl } = this.props;
+
+		fetch(`${apiUrl}/register`, {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({

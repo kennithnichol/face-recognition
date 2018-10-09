@@ -10,7 +10,9 @@ class Signin extends Component {
 	}
 
 	onSigninSubmit = (event) => {
-		fetch('https://salty-badlands-62075.herokuapp.com/signin', {
+		const { apiUrl } = this.props;
+
+		fetch(`${apiUrl}/signin`, {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({

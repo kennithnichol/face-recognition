@@ -36,6 +36,10 @@ const initialState = {
   }
 }
 
+const apiUrl = process.env.FACE_RECOGNITION_API || 'http://localhost:3000/';
+console.log(process.env);
+console.log(apiUrl);
+
 class App extends Component {
   constructor() {
     super();
@@ -60,7 +64,7 @@ class App extends Component {
 
   onSubmit = () => {
     this.setState({imageUrl: this.state.input})
-    fetch('https://salty-badlands-62075.herokuapp.com/imageurl', {
+    fetch(`${apiUrl}/imageurl`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -70,7 +74,7 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch('https://salty-badlands-62075.herokuapp.com/image',
+          fetch(`${apiUrl}/image`,
           {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
@@ -134,9 +138,9 @@ class App extends Component {
               <FaceRecognition imageUrl={imageUrl} box={box} />
             </div>
           : ( route === 'signin' || route === 'signout' ?
-              <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+              <Signin apiUrl={apiUrl} loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
             :
-              <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+              <Register apiUrl={apiUrl} loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
             )
           }
       </div>

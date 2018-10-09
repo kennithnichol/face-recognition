@@ -11,7 +11,7 @@ import Register from './components/Register/Register';
 import './App.css';
 
 const app = new Clarifai.App({
-  apiKey: 'YOURKEYHERE'
+  apiKey: 'yourapikey'
 });
 
 const particlesOptions = {
@@ -86,11 +86,11 @@ class App extends Component {
         }
         this.displayFaceBox(this.calculateFaceLocation(response))
       })
-      .catch(err => {})
+      .catch(console.log)
   }
 
   calculateFaceLocation = (data) => {
-    if (!data.outputs[0].data.length) {
+    if (data.outputs[0].data.length < 1) {
       return false;
     }
 

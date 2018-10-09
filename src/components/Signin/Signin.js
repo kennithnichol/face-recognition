@@ -10,7 +10,7 @@ class Signin extends Component {
 	}
 
 	onSigninSubmit = (event) => {
-		fetch('http://localhost:3000/signin', { 
+		fetch('http://localhost:3000/signin', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
@@ -48,18 +48,18 @@ class Signin extends Component {
 				        <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
 				        <input
 				        	onChange={this.onEmailChange}
-				        	className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-				        	type="email" 
-				        	name="email-address"  
+				        	className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+				        	type="email"
+				        	name="email-address"
 				        	id="email-address" />
 				      </div>
 				      <div className="mv3">
 				        <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-				        <input 
-				        	onChange={this.onPasswordChange} 
-				        	className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-				        	type="password" 
-				        	name="password"  
+				        <input
+				        	onChange={this.onPasswordChange}
+				        	className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+				        	type="password"
+				        	name="password"
 				        	id="password" />
 				      </div>
 				    </fieldset>

@@ -11,7 +11,7 @@ import Register from './components/Register/Register';
 import './App.css';
 
 const app = new Clarifai.App({
-  apiKey: '12b8d911c29948be8a4e76f008056c43'
+  apiKey: 'YOURKEYHERE'
 });
 
 const particlesOptions = {
@@ -40,7 +40,7 @@ class App extends Component {
         name: '',
         email: '',
         entries: 0,
-        joined: new Date()  
+        joined: new Date()
       }
     }
   }
@@ -83,10 +83,14 @@ class App extends Component {
         }
         this.displayFaceBox(this.calculateFaceLocation(response))
       })
-      .catch(console.log)
+      .catch(err => {})
   }
 
   calculateFaceLocation = (data) => {
+    if (!data.outputs[0].data.length) {
+      return false;
+    }
+
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
 
     return {
@@ -98,7 +102,6 @@ class App extends Component {
   }
 
   displayFaceBox = (box) => {
-    console.log(box);
     this.setState({box});
   }
 

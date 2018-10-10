@@ -36,7 +36,7 @@ const initialState = {
   }
 }
 
-const apiUrl = process.env.FACE_RECOGNITION_API || 'http://localhost:3000/';
+const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3000/';
 console.log(process.env);
 console.log(apiUrl);
 

@@ -2,7 +2,7 @@
   "name": "facerecognition",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kennithnichol.github.io/face-recognition/",
+  "homepage": "",
   "dependencies": {
     "clarifai": "^2.8.1",
     "react": "^16.5.2",
@@ -16,11 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "gh-pages": "gh-pages -d build",
-    "gh-pages-clean": "gh-pages-clean"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -94,27 +94,15 @@ class App extends Component {
   }
 
   calculateFaceLocations = (data) => {
-    if (data.outputs[0].data.length < 1) {
-      return false;
-    }
-
-    const regions = data.outputs[0].data.regions;
-    return regions.map(this.calculateFaceLocation);
-  }
-
-  calculateFaceLocation = (region) => {
-    if (!region.region_info) {
-      return {};
-    }
-
-    const clarifaiFace = region.region_info.bounding_box;
-
-    return {
-      leftCol: `${clarifaiFace.left_col * 100}%`,
-      topRow: `${clarifaiFace.top_row * 100}%`,
-      rightCol: `${100 - clarifaiFace.right_col * 100}%`,
-      bottomRow: `${100 - clarifaiFace.bottom_row * 100}%`
-    }
+    return data.outputs[0].data.regions.map((region) => {
+      const clarifaiFace = region.region_info.bounding_box;
+      return {
+        leftCol: `${clarifaiFace.left_col * 100}%`,
+        topRow: `${clarifaiFace.top_row * 100}%`,
+        rightCol: `${100 - clarifaiFace.right_col * 100}%`,
+        bottomRow: `${100 - clarifaiFace.bottom_row * 100}%`
+      }
+    });
   }
 
   displayFaceBoxes = (boxes) => {

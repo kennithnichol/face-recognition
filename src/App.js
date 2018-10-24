@@ -7,15 +7,16 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
+
 import './App.css';
 
 const particlesOptions = {
   particles: {
     number: {
-      value: 30,
+      value: 80,
       density: {
         enabled: true,
-        value_area: 700
+        value_area: 800
       }
     }
   }
@@ -37,8 +38,6 @@ const initialState = {
 }
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3000';
-console.log(process.env);
-console.log(apiUrl);
 
 class App extends Component {
   constructor() {
@@ -111,7 +110,7 @@ class App extends Component {
 
   onRouteChange =(route)=> {
     if (route === 'signout') {
-      this.setState(initialState)
+      return this.setState(initialState)
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
@@ -134,7 +133,7 @@ class App extends Component {
               />
               <FaceRecognition imageUrl={imageUrl} boxes={boxes} />
             </div>
-          : ( route === 'signin' || route === 'signout' ?
+          : ( route === 'signin' ?
               <Signin apiUrl={apiUrl} loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
             :
               <Register apiUrl={apiUrl} loadUser={this.loadUser} onRouteChange={this.onRouteChange} />

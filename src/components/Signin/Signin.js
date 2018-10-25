@@ -21,12 +21,13 @@ class Signin extends Component {
 			})
 		})
 		.then(resp => resp.json())
-		.then(user => {
-			if (user.id) {
-				this.props.loadUser(user);
+		.then(session => {
+			if (session.userId) {
+				this.props.loadUser(session.userId);
 				this.props.onRouteChange('home');
 			}
 		})
+		.catch(err => console.log(err));
 	}
 
 	onEmailChange = (event) => {

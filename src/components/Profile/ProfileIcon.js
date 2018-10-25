@@ -32,6 +32,7 @@ class ProfileIcon extends Component {
 						<img src="http://tachyons.io/img/logo.jpg" className="br-100 ba h3 w3 dib" alt="avatar" />
 					</DropdownToggle>
 					<DropdownMenu
+						right
 						className="b--transparent shadow-5"
 						style={{marginTop: '20px', backgroundColor: 'rbga(255,255,255,0.5'}}
 					>

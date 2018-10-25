@@ -21,13 +21,15 @@ class ProfileIcon extends Component {
 	}
 
 	render() {
+		const {dropdownOpen} = this.state;
+		const {onRouteChange, toggleModal} = this.props;
 		return (
 			<div className="pa4 tc">
-				<Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+				<Dropdown isOpen={dropdownOpen} toggle={this.toggle}>
 					<DropdownToggle
 						tag="span"
 						data-toggle="dropdown"
-						aria-expanded={this.state.dropdownOpen}
+						aria-expanded={dropdownOpen}
 					>
 						<img src="http://tachyons.io/img/logo.jpg" className="br-100 ba h3 w3 dib" alt="avatar" />
 					</DropdownToggle>
@@ -36,8 +38,8 @@ class ProfileIcon extends Component {
 						className="b--transparent shadow-5"
 						style={{marginTop: '20px', backgroundColor: 'rbga(255,255,255,0.5'}}
 					>
-						<DropdownItem>View Profile</DropdownItem>
-						<DropdownItem onClick={() => this.props.onRouteChange('signout')}>Sign Out</DropdownItem>
+						<DropdownItem onClick={toggleModal}>View Profile</DropdownItem>
+						<DropdownItem onClick={() => onRouteChange('signout')}>Sign Out</DropdownItem>
 					</DropdownMenu>
 				</Dropdown>
 			</div>

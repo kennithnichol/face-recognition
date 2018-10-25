@@ -22,3 +22,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* Bootstrap overrides */
+.hover-bg-black:hover,
+.hover-bg-black:focus {
+  background-color: #000 !important;
+}
+.hover-white:hover {
+  color: #fff !important;
+}
+

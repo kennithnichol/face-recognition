@@ -50,6 +50,37 @@ class App extends Component {
 	this.state = initialState;
   }
 
+  componentDidMount() {
+  	const token = window.sessionStorage.getItem('token');
+	if (token) {
+		fetch(`${apiUrl}/signin`, {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': token
+			}
+		}).then(resp => resp.json())
+		.then(data => {
+			if (data && data.id) {
+				fetch(`${apiUrl}/profile/${data.id}`, {
+					method: 'get',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': token
+					}
+				})
+				.then(resp => resp.json())
+				.then(user => {
+					if (user && user.email) {
+						this.loadUser(user);
+						this.onRouteChange('home');
+					}
+				})
+			}
+		}).catch(console.log);
+	}
+  }
+
   loadUser = (user) => {
 	this.setState({
 	  user: {
@@ -72,7 +103,10 @@ class App extends Component {
 	this.setState({imageUrl: this.state.input})
 	fetch(`${apiUrl}/imageurl`, {
 	  method: 'post',
-	  headers: { 'Content-Type': 'application/json' },
+	  headers: { 
+	  	'Content-Type': 'application/json',
+	  	'Authorization': window.sessionStorage.getItem('token')
+	  },
 	  body: JSON.stringify({
 		input: this.state.input
 	  })
@@ -83,7 +117,10 @@ class App extends Component {
 		  fetch(`${apiUrl}/image`,
 		  {
 			method: 'put',
-			headers: { 'Content-Type': 'application/json' },
+			headers: { 
+				'Content-Type': 'application/json',
+				'Authorization': window.sessionStorage.getItem('token')
+			},
 			body: JSON.stringify({
 			  id: this.state.user.id
 			})
@@ -100,6 +137,9 @@ class App extends Component {
   }
 
   calculateFaceLocations = (data) => {
+  	if (!data || !data.outputs)
+  		return;
+
 	return data.outputs[0].data.regions.map((region) => {
 	  const clarifaiFace = region.region_info.bounding_box;
 	  return {
@@ -112,7 +152,8 @@ class App extends Component {
   }
 
   displayFaceBoxes = (boxes) => {
-	this.setState({boxes});
+	if (boxes)
+		this.setState({boxes});
   }
 
   onRouteChange = (route) => {
@@ -144,7 +185,7 @@ class App extends Component {
 			{
 				isProfileOpen &&
 					<Modal>
-						<Profile loadUser={this.loadUser} ProfileOpen={isProfileOpen} toggleModal={this.toggleModal} user={user} />
+						<Profile apiUrl={apiUrl} loadUser={this.loadUser} ProfileOpen={isProfileOpen} toggleModal={this.toggleModal} user={user} />
 					</Modal>
 		  }
 			{ route === 'home' ?

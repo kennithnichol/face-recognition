@@ -22,9 +22,22 @@ class Signin extends Component {
 		})
 		.then(resp => resp.json())
 		.then(session => {
-			if (session.userId) {
-				this.props.loadUser(session.userId);
-				this.props.onRouteChange('home');
+			if (session.userId && 'true' === session.success) {
+				this.saveAuthTokenInSession(session.token);
+				fetch(`${apiUrl}/profile/${session.userId}`, {
+					method: 'get',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': session.token
+					}
+				})
+				.then(resp => resp.json())
+				.then(user => {
+					if (user && user.email) {
+						this.props.loadUser(user);
+						this.props.onRouteChange('home');
+					}
+				})
 			}
 		})
 		.catch(err => console.log(err));
@@ -36,6 +49,10 @@ class Signin extends Component {
 
 	onPasswordChange = (event) => {
 		this.setState({signInPassword: event.target.value});
+	}
+
+	saveAuthTokenInSession = (token) => {
+		window.sessionStorage.setItem('token', token);
 	}
 
 

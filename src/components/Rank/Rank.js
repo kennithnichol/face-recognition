@@ -8,8 +8,19 @@ class Rank extends Component {
 		}
 	}
 
-	componenetDidMount() {
-		this.generateEmoji(this.props.entries)
+	componentDidMount() {
+		this.updateEmoji();
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.entries === this.props.entries && prevProps.name === this.props.name) {
+			return null;
+		}
+		this.updateEmoji();
+	}
+
+	updateEmoji() {
+		this.generateEmoji(this.props.entries);
 	}
 
 	generateEmoji = (entries) => {
@@ -30,6 +41,9 @@ class Rank extends Component {
 				</div>
 				<div className="white f1">
 					{ entries }
+				</div>
+				<div className="white f3">
+					{ `Rank Badge: ${this.state.emoji}` }
 				</div>
 			</div>
 		);

@@ -2,14 +2,14 @@
   "name": "facerecognition",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kennithnichol.github.io/face-recgonition",
+  "homepage": "https://kennithnichol.github.io/face-recognition",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "gh-pages": "^2.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-particles-js": "^2.6.0",
-    "react-scripts": "2.0.4",
+    "react-scripts": "3.0.1",
     "react-tilt": "^0.1.4",
     "reactstrap": "^6.5.0",
     "tachyons": "^4.11.1"
